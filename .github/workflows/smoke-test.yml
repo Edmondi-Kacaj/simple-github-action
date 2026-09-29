@@ -1,0 +1,36 @@
+# LOCAL ONLY — not under .github/workflows, so GitHub Actions never runs this.
+# Use with act:
+#   act workflow_dispatch -W local-workflows/smoke-test.yml
+#
+# Manual smoke tests against real Gofile (guest uploads — no token required).
+# Actions tab → Smoke test → Run workflow
+name: Smoke test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  # ── single file, no compression ───────────────────────────────────
+  upload-none:
+    name: Upload README
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci && npm run build
+
+      - name: Upload README 
+        id: gofile
+        uses: ./
+        with:
+          path: README.md
+
+      - name: Check outputs
+        run: |
+          echo "download-page=${{ steps.gofile.outputs.download-page }}"
+          echo "file-id=${{ steps.gofile.outputs.file-id }}"

@@ -1,0 +1,31 @@
+{
+  "name": "simple-gofile-action",
+  "version": "1.0.0",
+  "description": "Minimal GitHub Action: upload files to Gofile.io",
+  "author": "Edmond Kacaj <info@edmondkacaj.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USER/simple-gofile-action.git"
+  },
+  "keywords": [
+    "github-action",
+    "gofile",
+    "upload"
+  ],
+  "homepage": "https://www.edmondkacaj.com/posts/creating-a-custom-github-action",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "lint": "tsc --noEmit"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/glob": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vercel/ncc": "^0.38.3",
+    "typescript": "^5.7.2"
+  }
+}

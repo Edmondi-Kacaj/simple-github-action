@@ -1,0 +1,25 @@
+name: 'Simple Gofile Upload'
+description: 'Upload a file (or glob) to Gofile.io and output the share link'
+author: 'Edmond Kacaj <info@edmondkacaj.com>'
+
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
+
+inputs:
+  path:
+    description: 'File path or glob (e.g. dist/** or report.pdf)'
+    required: true
+  token:
+    description: 'Optional Gofile API token. Omit for guest upload.'
+    required: false
+
+outputs:
+  download-page:
+    description: 'Public download page URL from Gofile'
+  file-id:
+    description: 'Uploaded file id'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
